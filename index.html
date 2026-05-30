@@ -220,10 +220,11 @@
       display: flex; align-items: center; overflow: hidden;
     }
     .mq-track {
-      display: flex; gap: 40px; white-space: nowrap;
-      animation: mq-scroll 22s linear infinite;
+      display: flex; white-space: nowrap;
+      animation: mq-scroll 28s linear infinite;
+      will-change: transform;
     }
-    .mq-item { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink); flex-shrink: 0; }
+    .mq-item { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink); flex-shrink: 0; padding: 0 20px; }
     .mq-sep { color: var(--hairline-hard); flex-shrink: 0; }
     @keyframes mq-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
@@ -983,18 +984,7 @@
   <!-- ── MARQUEE - canvas bg, ink text (Nike: editorial ticker) ── -->
   <div class="marquee" aria-hidden="true">
     <div class="mq-track">
-      <span class="mq-item">No False Hopes</span><span class="mq-sep">-</span>
-      <span class="mq-item">Real Results</span><span class="mq-sep">-</span>
-      <span class="mq-item">Free Diet Plans</span><span class="mq-sep">-</span>
-      <span class="mq-item">For All Genders</span><span class="mq-sep">-</span>
-      <span class="mq-item">Expert Trainers</span><span class="mq-sep">-</span>
-      <span class="mq-item">Civil Lines Prayagraj</span><span class="mq-sep">-</span>
-      <span class="mq-item">No False Hopes</span><span class="mq-sep">-</span>
-      <span class="mq-item">Real Results</span><span class="mq-sep">-</span>
-      <span class="mq-item">Free Diet Plans</span><span class="mq-sep">-</span>
-      <span class="mq-item">For All Genders</span><span class="mq-sep">-</span>
-      <span class="mq-item">Expert Trainers</span><span class="mq-sep">-</span>
-      <span class="mq-item">Civil Lines Prayagraj</span><span class="mq-sep">-</span>
+      <span class="mq-item">No False Hopes</span><span class="mq-sep">·</span><span class="mq-item">Real Results</span><span class="mq-sep">·</span><span class="mq-item">Free Diet Plans</span><span class="mq-sep">·</span><span class="mq-item">For All Genders</span><span class="mq-sep">·</span><span class="mq-item">Expert Trainers</span><span class="mq-sep">·</span><span class="mq-item">Civil Lines &amp; Tagore Town</span><span class="mq-sep">·</span><span class="mq-item">No False Hopes</span><span class="mq-sep">·</span><span class="mq-item">Real Results</span><span class="mq-sep">·</span><span class="mq-item">Free Diet Plans</span><span class="mq-sep">·</span><span class="mq-item">For All Genders</span><span class="mq-sep">·</span><span class="mq-item">Expert Trainers</span><span class="mq-sep">·</span><span class="mq-item">Civil Lines &amp; Tagore Town</span><span class="mq-sep">·</span>
     </div>
   </div>
 
@@ -1003,7 +993,7 @@
     <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
       <source src="assets/hero-bg.mp4" type="video/mp4">
     </video>
-    <div class="hero-ghost" aria-hidden="true">WD</div>
+
     <div class="hero-inner">
 
       <!-- {typography.display-campaign}: headline locked to bottom-left of tile -->
@@ -1581,7 +1571,7 @@
     /* ── FITBOT ── */
     const WA='918840655898';
     const KB={
-      greeting:{a:`Hi! I'm <strong>FitBot</strong> from <strong>The Weight Date</strong>, Prayagraj 💪<br><br>We're rated <strong>5.0 ★ across 800+ reviews</strong> - open to all genders, free diet plans, expert training, zero hidden charges.`,c:['Timings?','Where are you?','Fees?','Free diet plans?','Contact']},
+      greeting:{a:`Hi! I'm <strong>FitBot</strong> from <strong>The Weight Date</strong>, Prayagraj 💪<br><br>We're open to all genders, offer free diet plans, expert training, and zero hidden charges.`,c:['Timings?','Where are you?','Fees?','Free diet plans?','Contact']},
       timings:{a:`<strong>Mon-Thu & Sat:</strong> 6:00 AM - 10:00 PM<br><strong>Friday:</strong> 5:30 AM - 10:00 PM<br><strong>Sunday:</strong> Closed`,c:['Where are you?','Contact','Fees?']},
       location:{a:`<strong>Civil Lines:</strong> 128, Thornhill Rd, Civil Lines, Prayagraj - near Hot Stuff Chauraha.<br><strong>Tagore Town:</strong> The Weight Date Tagore Town Branch, Tagore Town, Prayagraj.`,c:['Get directions','Timings?','Contact']},
       directions:{a:'Opening Google Maps now.',c:['Timings?','Contact'],x:()=>window.open('https://maps.google.com/?q=The+Weight+Date+gym+Civil+Lines+Prayagraj','_blank')},
@@ -1591,7 +1581,7 @@
       beginner:{a:`Absolute beginners are very welcome! <strong>Special attention</strong> to ensure you start safely and confidently from day one.`,c:['Fees?','Contact','Timings?']},
       contact:{a:`📞 <strong>+91 88406 55898</strong><br>📸 <strong>@theweightdate</strong> (Civil Lines)<br>📸 <strong>@theweightdate_tagoretown</strong> (Tagore Town)`,c:['Timings?','Where are you?','Fees?']},
       thanks:{a:`You're welcome! Come visit anytime 💪`,c:['Timings?','Contact']},
-      review:{a:`<strong>5.0 ★ with 800+ Google reviews</strong> - members say it feels like a second home.`,c:['Timings?','Fees?','Contact']},
+      review:{a:`Members say it feels like a second home — a supportive community with real results.`,c:['Timings?','Fees?','Contact']},
     };
     const RULES=[
       [['time','timing','open','close','hour','when','sunday','monday','friday','kab'],'timings'],
