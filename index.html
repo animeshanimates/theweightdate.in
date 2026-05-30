@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>The Weight Date | Fitness Centre - Prayagraj</title>
   <meta name="description" content="Prayagraj's premier fitness centre for males & females. No false hopes, only real results. Free diet plans, expert training. Civil Lines, Prayagraj."/>
-  <meta name="theme-color" content="#ffffff"/>
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"/>
+  <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)"/>
   <meta property="og:type"        content="website"/>
   <meta property="og:title"       content="The Weight Date | Fitness Centre - Prayagraj"/>
   <meta property="og:description" content="Prayagraj&#39;s premier fitness centre for males &amp; females. No false hopes, only real results. Free diet plans, expert training. Civil Lines, Prayagraj."/>
@@ -69,14 +70,106 @@
       --safe:  env(safe-area-inset-bottom, 0px);
     }
 
+    /* ── DARK MODE – follows device preference ── */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink:           #f0f0f0;
+        --canvas:        #111111;
+        --soft-cloud:    #1c1c1e;
+        --hairline:      #2c2c2e;
+        --hairline-hard: #3a3a3c;
+        --mute:          #98989d;
+        --charcoal:      #d1d1d6;
+        --stone:         #636366;
+        --on-primary:    #111111;
+      }
+
+      /* Body & page */
+      body { background: var(--canvas); color: var(--ink); }
+
+      /* Nav */
+      .nav { background: rgba(17,17,17,0.92); border-color: var(--hairline); }
+      .bar { background: rgba(17,17,17,0.96); border-color: var(--hairline); }
+
+      /* Buttons */
+      .btn-primary { background: var(--ink); color: var(--canvas); }
+      .btn-secondary { background: var(--soft-cloud); color: var(--ink); border-color: var(--hairline-hard); }
+      .btn-ghost { background: var(--soft-cloud); color: var(--ink); border-color: var(--hairline); }
+
+      /* Force Editorial Buttons to stay white on dark tiles */
+      .btn-on-image { background: #ffffff; color: #111111; }
+      @media (hover: hover) {
+        .btn-on-image:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.14); }
+      }
+
+      /* Force Editorial Tiles to stay Dark */
+      .hero, .campaign { background: #111111; }
+      .hero-title, .campaign-title { color: #ffffff; }
+
+      /* Image skeleton & map placeholder */
+      .map-placeholder { background: #2c2c2e; }
+      .map-placeholder:hover, .map-placeholder:active { background: #3a3a3c; }
+
+      /* Timings */
+      .timing-row { border-color: var(--hairline); }
+      .timing-row.today { background: var(--hairline); }
+
+      /* Tabs */
+      .loc-tabs, .about-tabs { background: var(--soft-cloud); }
+      .loc-tab, .about-tab { color: var(--mute); }
+      .loc-tab.active, .about-tab.active { background: var(--hairline); color: var(--ink); box-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+
+      /* Legal Modal */
+      .lm-panel { background: var(--canvas); }
+      .lm-header { border-color: var(--hairline); }
+      .lm-close { color: var(--ink); }
+      .lm-body h3 { color: var(--ink); }
+      .lm-body { color: var(--charcoal); }
+      .lm-grievance { background: var(--soft-cloud); border-color: var(--hairline-hard); }
+
+      /* Footer – force text to stay white against dark background */
+      .footer { background: #000000; }
+      .footer-name, .footer-tel, .footer-soc { color: #ffffff; }
+
+      /* Kiara panel */
+      #jpanel { background: var(--canvas); border-color: var(--hairline); }
+      #jhead { border-color: var(--hairline); }
+      #jbody { background: var(--canvas); }
+      .jmsg.bot { background: var(--soft-cloud); color: var(--ink); }
+      .jmsg.user { background: #2a2a2a; color: #ffffff; }
+      .jthink { background: var(--soft-cloud); }
+      #jchips { border-color: var(--hairline); background: var(--canvas); }
+      .jchip { background: var(--soft-cloud); color: var(--ink); border-color: var(--hairline); }
+      .jchip:hover { background: var(--hairline-hard); color: var(--ink); border-color: var(--hairline-hard); }
+      #jinputrow { border-color: var(--hairline); background: var(--canvas); }
+      #jinput { background: var(--soft-cloud); color: var(--ink); border-color: var(--hairline-hard); }
+      #jinput:focus { border-color: var(--mute); box-shadow: 0 0 0 2px rgba(255,255,255,0.06); background: var(--soft-cloud); }
+      #jinput::placeholder { color: var(--stone); }
+      #jmic { background: var(--soft-cloud); }
+      #jmic svg { fill: var(--mute); }
+      #jmic:hover { background: var(--hairline); }
+      #jwa-note { background: var(--canvas); color: var(--mute); border-color: var(--hairline); }
+      #jclose { background: var(--hairline-hard); color: var(--ink); }
+
+      /* Contact buttons inside chatbot */
+      .jmsg a[href^="tel"] { background: var(--soft-cloud) !important; color: var(--ink) !important; }
+      .jmsg a[href^="tel"] svg { fill: var(--ink) !important; }
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      scroll-padding-top: 80px; /* offset for sticky nav */
+    }
     body {
       font-family: var(--font);
       background: var(--canvas);
       color: var(--ink);
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      overscroll-behavior-y: none; /* prevent bounce jank on Chrome Android */
     }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
@@ -197,6 +290,8 @@
       backdrop-filter: blur(16px) saturate(180%);
       -webkit-backdrop-filter: blur(16px) saturate(180%);
       border-bottom: 1px solid var(--hairline);
+      transition: box-shadow 0.3s ease, background 0.3s ease;
+      transform: translateZ(0);
     }
     .nav-inner {
       max-width: 480px; margin: 0 auto; padding: 0 20px;
@@ -530,7 +625,7 @@
       transition: background 0.15s;
       -webkit-tap-highlight-color: transparent;
     }
-    .map-placeholder:hover, .map-placeholder:active { background: #ebebeb; }
+    .map-placeholder:hover, .map-placeholder:active { background: var(--hairline); }
     .map-placeholder-icon {
       width: 44px; height: 44px; border-radius: var(--r-full);
       background: var(--ink); color: var(--on-primary);
@@ -566,7 +661,11 @@
     }
     .footer-mark img { width: 100%; height: 100%; object-fit: cover; }
     .footer-name { font-family: var(--disp); font-size: 17px; letter-spacing: 1px; color: var(--on-primary); }
-    .footer-addr { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.68); line-height: 1.7; }
+    .footer-addr { font-size: 11.5px; font-weight: 400; color: rgba(255,255,255,0.68); line-height: 1.65; }
+    .footer-addr-wrap { display: flex; align-items: flex-start; gap: 20px; justify-content: center; margin-bottom: 4px; }
+    .footer-addr-branch { display: flex; flex-direction: column; gap: 3px; text-align: left; min-width: 0; }
+    .footer-addr-label { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-bottom: 3px; }
+    .footer-addr-divider { width: 1px; background: rgba(255,255,255,0.12); align-self: stretch; flex-shrink: 0; }
     .footer-tel { font-family: var(--disp); font-size: 22px; letter-spacing: 1px; color: var(--on-primary); }
     .footer-socials { display: flex; gap: 8px; }
     .footer-soc {
@@ -588,6 +687,7 @@
       backdrop-filter: blur(20px) saturate(200%);
       -webkit-backdrop-filter: blur(20px) saturate(200%);
       border-top: 1px solid var(--hairline);
+      transform: translateZ(0);
     }
     .bar-inner {
       max-width: 480px; margin: 0 auto; width: 100%;
@@ -642,7 +742,7 @@
     .lb-name { font-family: var(--disp); font-size: 28px; letter-spacing: 1px; }
     .lb-desc { font-size: 14px; font-weight: 400; line-height: 1.65; color: var(--charcoal); }
 
-    /* ── FITBOT - Nike ink-palette chatbot ── */
+    /* ── KIARA - Nike ink-palette chatbot ── */
     #jlauncher {
       position: fixed;
       bottom: calc(var(--bar-h) + var(--safe) + 14px); right: 18px;
@@ -671,28 +771,31 @@
     #jpanel.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
 
     #jhead {
-      background: var(--ink); padding: 13px 14px;
+      background: var(--soft-cloud); padding: 13px 14px;
       display: flex; align-items: center; gap: 11px; flex-shrink: 0;
+      border-bottom: 1px solid var(--hairline);
     }
     .javatar {
       width: 38px; height: 38px; border-radius: var(--r-full);
-      background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.2);
+      background: var(--hairline); border: 1.5px solid var(--hairline-hard);
       display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative;
     }
-    .javatar svg { fill: var(--on-primary); width: 20px; height: 20px; }
-    .jonline { position: absolute; bottom: 0; right: 0; width: 9px; height: 9px; background: var(--success-bright); border-radius: 50%; border: 2px solid var(--ink); }
+    .javatar svg { fill: var(--ink); width: 20px; height: 20px; }
+    .jonline { position: absolute; bottom: 0; right: 0; width: 9px; height: 9px; background: var(--success-bright); border-radius: 50%; border: 2px solid var(--soft-cloud); }
     .jinfo { flex: 1; }
-    .jname { font-family: var(--disp); font-size: 18px; letter-spacing: 1px; color: var(--on-primary); line-height: 1; }
-    .jsub { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-top: 2px; }
+    .jname { font-family: var(--disp); font-size: 18px; letter-spacing: 1px; color: var(--ink); line-height: 1; }
+    .jsub { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--mute); margin-top: 2px; }
     #jclose {
       width: 26px; height: 26px; border-radius: var(--r-full);
-      background: rgba(255,255,255,0.1); border: none;
-      color: rgba(255,255,255,0.7); font-size: 12px;
+      background: var(--hairline); border: none;
+      color: var(--mute); font-size: 12px;
       display: flex; align-items: center; justify-content: center; cursor: pointer;
     }
     #jbody {
       flex: 1; overflow-y: auto; padding: 12px;
       display: flex; flex-direction: column; gap: 8px;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
     }
     #jbody::before { content: ''; flex: 1; min-height: 0; }
     #jbody::-webkit-scrollbar { width: 3px; }
@@ -757,11 +860,28 @@
     }
 
     /* ── SCROLL REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
-    .reveal.vis { opacity: 1; transform: none; }
-    .fu { opacity: 0; animation: fadeup 0.5s ease forwards; }
-    .fu-1{animation-delay:.05s} .fu-2{animation-delay:.16s} .fu-3{animation-delay:.26s} .fu-4{animation-delay:.36s} .fu-5{animation-delay:.46s}
-    @keyframes fadeup { from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none} }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.vis { opacity: 1; transform: translateY(0); }
+    /* staggered children inside revealed sections */
+    .reveal.vis .disc-row:nth-child(1){ transition-delay:.05s }
+    .reveal.vis .disc-row:nth-child(2){ transition-delay:.12s }
+    .reveal.vis .disc-row:nth-child(3){ transition-delay:.19s }
+    .reveal.vis .disc-row:nth-child(4){ transition-delay:.26s }
+    .reveal.vis .disc-row:nth-child(5){ transition-delay:.33s }
+    .disc-row {
+      opacity: 0; transform: translateX(-10px);
+      transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1), transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.vis .disc-row { opacity: 1; transform: translateX(0); }
+    .fu { opacity: 0; animation: fadeup 0.55s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .fu-1{animation-delay:.08s} .fu-2{animation-delay:.18s} .fu-3{animation-delay:.3s} .fu-4{animation-delay:.42s} .fu-5{animation-delay:.54s}
+    @keyframes fadeup { from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none} }
 
     @media (min-width: 768px) {
       body { padding-bottom: 0; }
@@ -837,10 +957,22 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .fu,.reveal{animation:none;transition:none;opacity:1;transform:none}
+      .fu,.reveal,.disc-row{animation:none;transition:none;opacity:1;transform:none}
       .mq-track{animation:none}
       .hero-video,.footer-video{display:none}
     }
+
+    /* ── SCROLL PERFORMANCE ── */
+    /* contain: layout+style stops browser recalculating outside the section */
+    .sec { contain: layout style; }
+    /* tell browser these sections are off-screen initially — skip paint cost */
+    .sec.reveal { content-visibility: auto; contain-intrinsic-size: 0 400px; }
+    /* prevent 300ms tap delay and accidental horizontal jank on touch */
+    .btn, .chip, .jchip, .bar-btn, .card { touch-action: manipulation; }
+    /* cards: isolate stacking context so tilt transform doesn't affect siblings */
+    .card { isolation: isolate; }
+    /* footer video: own layer, don't repaint on scroll */
+    .footer-video, .hero-video { will-change: opacity; }
 
     /* Utility spacer */
     .gap { height: var(--s-sec); }
@@ -935,6 +1067,15 @@
       border-left: 3px solid var(--ink); margin: 10px 0;
       font-size: 13px; line-height: 1.75; color: var(--charcoal);
     }
+
+    #jmic { width:34px; height:34px; border-radius:50%; background:var(--soft-cloud); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background .15s,transform .12s; }
+    #jmic:hover { background: var(--hairline); transform:scale(1.06); }
+    #jmic.recording { background:var(--brand); animation:mic-pulse 1s infinite; }
+    @keyframes mic-pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+    #jmic svg { width:14px; height:14px; fill:var(--mute); }
+    #jmic.recording svg { fill:#fff; }
+    #jsend { background:var(--ink); }
+    #jwa-note { font-size:10.5px; color:var(--mute); text-align:center; padding:3px 12px 9px; background:var(--canvas); font-family:var(--font); border-top:1px solid var(--hairline); }
 
     /* ── FOOTER SOCIAL GROUPS ── */
     .footer-social-wrap { display: flex; flex-direction: column; gap: 14px; align-items: center; margin-top: 8px; }
@@ -1098,7 +1239,7 @@
 
   <!-- ── CAMPAIGN TILE - Nike's signature editorial unit ── -->
   <!-- Full-bleed ink section, {typography.display-campaign} burned in, white pill CTA bottom-left -->
-  <section class="campaign">
+  <section class="campaign reveal">
     <div class="campaign-inner">
       <div class="campaign-eye">Our Philosophy</div>
       <h2 class="campaign-title">No<br>False<br>Hopes.<br>Only Real<br>Results.</h2>
@@ -1177,7 +1318,7 @@
       <div class="about-panel active" id="about-store">
         <div class="about-kicker">Prayagraj, Uttar Pradesh</div>
         <p class="about-lead">A serious training space with a family feel.</p>
-        <p class="about-body"><strong>The Weight Date</strong> is built for people who want honest guidance, consistent training, and visible progress without false promises. We are fully equipped for all levels of strength training—whether you are starting your first week, chasing a general fitness goal, or training seriously for powerlifting, our team helps you train with clarity.</p>
+        <p class="about-body"><strong>The Weight Date</strong> is built for people who want honest guidance, consistent training, and visible progress without false promises. We are fully equipped for all levels of strength training, whether you are starting your first week, chasing a general fitness goal, or training seriously for powerlifting, our team helps you train with clarity.</p>
         <br>
         <p class="about-body">Every member gets attention, structure, and respect. Workout support, heavy lifting capabilities, diet guidance, and a clean, motivating environment come together to make showing up easier every day.</p>
 
@@ -1214,7 +1355,7 @@
 
         <div class="about-actions">
           <a href="tel:+918840655898" class="btn btn-primary">Contact Us</a>
-          <a href="#loc-civil" class="btn btn-secondary" onclick="switchLoc('civil', document.querySelector('.loc-tab.active'))">Visit Gym</a>
+          <a href="#loc-civil" class="btn btn-secondary" onclick="switchLoc('civil', document.querySelectorAll('.loc-tab')[0])">Visit Gym</a>
         </div>
       </div>
 
@@ -1231,10 +1372,10 @@
             <span class="owner-tag">✓ Prayagraj-Based</span>
             <span class="owner-tag">✓ Member-First</span>
           </div>
-          <p class="owner-bio">Passionate about helping people transform their lives through consistent training, honest guidance, and real results. Built The Weight Date to be a gym that truly cares — no false hopes, only progress.</p>
+          <p class="owner-bio">Passionate about helping people transform their lives through consistent training, honest guidance, and real results. Built The Weight Date to be a gym that truly cares. No false hopes, only progress.</p>
           <div class="owner-quote">
             <div class="owner-quote-bar"></div>
-            <div class="owner-quote-text">"Train hard, stay consistent — real results take real effort."</div>
+            <div class="owner-quote-text">"Train hard, stay consistent. Real results take real effort."</div>
           </div>
           <div class="owner-actions">
             <a href="tel:+918840655898" class="btn btn-primary">
@@ -1344,7 +1485,7 @@
                   <div class="addr-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
                   <div>
                     <div class="addr-label">Address</div>
-                    <div class="addr-val">The Weight Date Tagore Town Branch,<br>Tagore Town, Prayagraj,<br>Uttar Pradesh</div>
+                    <div class="addr-val">Bansi Bhawan Chauraha, 47A/1,<br>Tagore Town,<br>Prayagraj, Uttar Pradesh 211002</div>
                   </div>
                 </div>
                 <div class="addr-row">
@@ -1388,7 +1529,17 @@
           <div class="footer-mark"><img src="assets/logo.webp" alt="" aria-hidden="true"></div>
           <div class="footer-name">THE WEIGHT DATE</div>
         </div>
-        <p class="footer-addr">128, Thornhill Rd, Civil Lines<br>Prayagraj, Uttar Pradesh 211002</p>
+        <div class="footer-addr-wrap">
+          <div class="footer-addr-branch">
+            <span class="footer-addr-label">Civil Lines</span>
+            <span class="footer-addr">128, Thornhill Rd, Dhobi Ghat<br>Vivek Vihar Colony, Civil Lines<br>Prayagraj, UP 211002</span>
+          </div>
+          <div class="footer-addr-divider"></div>
+          <div class="footer-addr-branch">
+            <span class="footer-addr-label">Tagore Town</span>
+            <span class="footer-addr">Bansi Bhawan Chauraha, 47A/1<br>Tagore Town, UP 211002</span>
+          </div>
+        </div>
         <a href="tel:+918840655898" class="footer-tel">+91 88406 55898</a>
         <!-- Social icon-circular buttons – grouped by branch -->
         <div class="footer-social-wrap">
@@ -1430,9 +1581,8 @@
             <button class="footer-policy-btn" onclick="openLegal('privacy')">Privacy Policy</button>
             <span class="footer-policy-sep">·</span>
             <button class="footer-policy-btn" onclick="openLegal('terms')">Terms of Service</button>
-            <span class="footer-policy-sep">·</span>
-            <button class="footer-policy-btn" onclick="openLegal('refund')">Refund Policy</button>
-          </div>
+
+          </div>          </div>
         </div>
       </div>
     </div>
@@ -1451,32 +1601,150 @@
     </div>
   </div>
 
-  <!-- ── FITBOT LAUNCHER - ink button-icon-circular ── -->
-  <button id="jlauncher" onclick="toggleJudy()" aria-label="Chat with our assistant">
+  <!-- ── KIARA LAUNCHER - ink button-icon-circular ── -->
+  <button id="jlauncher" onclick="toggleJudy()" aria-label="Chat with Kiara, our virtual receptionist">
     <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
     <div class="jnotif"></div>
   </button>
 
-  <!-- ── FITBOT PANEL - Nike ink header, canvas body ── -->
-  <div id="jpanel" role="dialog" aria-modal="true" aria-label="FitBot chat">
+  <!-- ── KIARA PANEL ── -->
+  <div id="jpanel" role="dialog" aria-modal="true" aria-label="Kiara chat">
     <div id="jhead">
-      <div class="javatar">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      <div id="javatar-outer" style="position:relative;width:44px;height:44px;flex-shrink:0;cursor:pointer" onclick="kiaraReact()" title="Say hi to Kiara!">
+        <div id="javatar-wrap" style="width:44px;height:44px;border-radius:50%;background:#1e1e1e;border:1.5px solid #333;overflow:hidden">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- bg -->
+            <circle cx="50" cy="50" r="50" fill="#1e1e1e"/>
+
+            <!-- TORSO / racerback tank -->
+            <path d="M18 100 L18 84 Q26 73 38 71 L44 69 L50 74 L56 69 L62 71 Q74 73 82 84 L82 100Z" fill="#2c2c2e"/>
+            <path d="M44 69 Q50 80 56 69" stroke="#3a3a3c" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M38 71 Q50 67 62 71" stroke="#d9a070" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.45"/>
+            <path d="M18 84 Q22 75 30 72" stroke="#4a4a4a" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M82 84 Q78 75 70 72" stroke="#4a4a4a" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+            <!-- NECK -->
+            <path d="M44 69 L43 77 Q50 80 57 77 L56 69 Q50 72 44 69Z" fill="#e8b080"/>
+            <path d="M44 69 L44 76" stroke="#c8906a" stroke-width="0.8" fill="none" opacity="0.45"/>
+            <path d="M56 69 L56 76" stroke="#c8906a" stroke-width="0.8" fill="none" opacity="0.45"/>
+
+            <!-- FACE — angular, chiseled path. Face shifted down vs before (top at y=34) -->
+            <path d="M50 34 C38 34,31 41,31 50 C31 57,32 62,34 66 C36 70,38 72,40 74 Q45 78,50 78 Q55 78,60 74 C62 72,64 70,66 66 C68 62,69 57,69 50 C69 41,62 34,50 34Z" fill="#f0c090"/>
+            <!-- jaw shadow planes -->
+            <path d="M34 66 Q37 71 40 74" stroke="#c8906a" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.45"/>
+            <path d="M66 66 Q63 71 60 74" stroke="#c8906a" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.45"/>
+            <!-- cheekbone highlights -->
+            <path d="M32 57 Q34 61 36 63" stroke="#f8c8a0" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.3"/>
+            <path d="M68 57 Q66 61 64 63" stroke="#f8c8a0" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.3"/>
+
+            <!-- HAIR — middle part, falls on both sides -->
+            <!-- skull top base: covers forehead down to y=34 where face begins -->
+            <path d="M50 16 C38 16,30 24,30 36 L30 44 C30 38,38 34,50 34 C62 34,70 38,70 44 L70 36 C70 24,62 16,50 16Z" fill="#3a2510"/>
+            <!-- surface sheen on top of skull -->
+            <path d="M34 28 Q50 20 66 28" stroke="#6a4828" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+            <!-- middle part line -->
+            <path d="M50 16 L50 34" stroke="#2a1a08" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+
+            <!-- LEFT side hair — flows from part, over ear, down past jaw -->
+            <!-- outer silhouette of left hair mass -->
+            <path d="M50 16 C44 16,36 20,31 28 C27 34,26 42,26 52 C26 60,27 66,29 72 Q32 78,34 74 C33 68,32 60,32 52 C32 42,34 36,38 30 C42 24,46 20,50 20Z" fill="#3a2510"/>
+            <!-- left hair inner layer (lighter, gives volume) -->
+            <path d="M50 20 C46 20,40 24,36 30 C33 36,32 44,32 52 C32 58,33 64,34 70 Q36 66,36 60 C36 52,37 44,40 37 C43 30,47 25,50 23Z" fill="#4a3018"/>
+            <!-- left hair highlight strand -->
+            <path d="M46 18 C40 22,35 30,33 40 C31 48,31 56,32 64" stroke="#6a4828" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+            <!-- RIGHT side hair — mirrors left -->
+            <path d="M50 16 C56 16,64 20,69 28 C73 34,74 42,74 52 C74 60,73 66,71 72 Q68 78,66 74 C67 68,68 60,68 52 C68 42,66 36,62 30 C58 24,54 20,50 20Z" fill="#3a2510"/>
+            <!-- right hair inner layer -->
+            <path d="M50 20 C54 20,60 24,64 30 C67 36,68 44,68 52 C68 58,67 64,66 70 Q64 66,64 60 C64 52,63 44,60 37 C57 30,53 25,50 23Z" fill="#4a3018"/>
+            <!-- right hair highlight strand -->
+            <path d="M54 18 C60 22,65 30,67 40 C69 48,69 56,68 64" stroke="#6a4828" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+            <!-- HEADBAND — slim red band sitting right at hairline -->
+            <path d="M31 36 Q50 32 69 36 L69 40 Q50 36 31 40Z" fill="#e8273a"/>
+            <path d="M33 37 Q50 33.5 67 37" stroke="#ff4455" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.5"/>
+            <path d="M31 36 Q50 32 69 36" stroke="#b01020" stroke-width="0.5" fill="none"/>
+            <path d="M31 40 Q50 36 69 40" stroke="#b01020" stroke-width="0.5" fill="none"/>
+
+            <!-- EARS -->
+            <ellipse cx="31" cy="56" rx="3" ry="4.5" fill="#e8b080"/>
+            <ellipse cx="69" cy="56" rx="3" ry="4.5" fill="#e8b080"/>
+            <ellipse cx="31" cy="56" rx="1.5" ry="2.5" fill="#d09060" opacity="0.5"/>
+            <ellipse cx="69" cy="56" rx="1.5" ry="2.5" fill="#d09060" opacity="0.5"/>
+
+            <!-- EYES — almond shaped, intense -->
+            <path d="M37 56 Q43 52 49 56 Q43 60 37 56Z" fill="#fff"/>
+            <path d="M51 56 Q57 52 63 56 Q57 60 51 56Z" fill="#fff"/>
+            <circle cx="43" cy="56" r="2.8" fill="#2a2a2a"/>
+            <circle cx="57" cy="56" r="2.8" fill="#2a2a2a"/>
+            <circle cx="43" cy="56" r="1.6" fill="#0a0a0a"/>
+            <circle cx="57" cy="56" r="1.6" fill="#0a0a0a"/>
+            <circle cx="44" cy="55" r="0.9" fill="#fff"/>
+            <circle cx="58" cy="55" r="0.9" fill="#fff"/>
+            <!-- upper lash line -->
+            <path d="M37 56 Q43 52 49 56" stroke="#111" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+            <path d="M51 56 Q57 52 63 56" stroke="#111" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+
+            <!-- EYEBROWS — strong, close-set for intensity -->
+            <path d="M38 51 Q43 48 48 51" stroke="#111" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <path d="M52 51 Q57 48 62 51" stroke="#111" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <path d="M48 51 L48.5 50" stroke="#111" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+            <path d="M52 51 L51.5 50" stroke="#111" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+
+            <!-- NOSE -->
+            <path d="M50 60 L48.5 65 Q50 66.5 51.5 65Z" fill="#d09060" opacity="0.55"/>
+            <ellipse cx="48" cy="66" rx="1.4" ry="0.8" fill="#c07848" opacity="0.55"/>
+            <ellipse cx="52" cy="66" rx="1.4" ry="0.8" fill="#c07848" opacity="0.55"/>
+
+            <!-- MOUTH -->
+            <path d="M44 70 Q47 68.5 50 69.5 Q53 68.5 56 70" stroke="#a06848" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <path d="M44 70 Q50 74.5 56 70" stroke="#a06848" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+
+            <!-- BLUSH subtle -->
+            <ellipse cx="37" cy="65" rx="4.5" ry="3" fill="#e8806a" opacity="0.16"/>
+            <ellipse cx="63" cy="65" rx="4.5" ry="3" fill="#e8806a" opacity="0.16"/>
+
+            <!-- BLINK LIDS -->
+            <ellipse id="jlid-l" cx="43" cy="56" rx="5.5" ry="0" fill="#f0c090"/>
+            <ellipse id="jlid-r" cx="57" cy="56" rx="5.5" ry="0" fill="#f0c090"/>
+
+            <!-- REACT OVERLAYS -->
+            <ellipse id="jblush-l" cx="37" cy="65" rx="7" ry="5" fill="#e8606a" opacity="0"/>
+            <ellipse id="jblush-r" cx="63" cy="65" rx="7" ry="5" fill="#e8606a" opacity="0"/>
+            <path id="jsmile" d="M44 70 Q50 76 56 70" stroke="#a06040" stroke-width="2" fill="none" stroke-linecap="round" opacity="0"/>
+
+            <style>
+              #jlid-l,#jlid-r{animation:jblink 3s ease-in-out infinite}
+              @keyframes jblink{0%,88%{ry:0}91%{ry:6.5}95%{ry:0}100%{ry:0}}
+              @keyframes jreact-blush{0%{opacity:0}20%{opacity:0.55}80%{opacity:0.55}100%{opacity:0}}
+              @keyframes jreact-smile{0%{opacity:0}20%{opacity:1}80%{opacity:1}100%{opacity:0}}
+              @keyframes jreact-bounce{0%{transform:scale(1)}25%{transform:scale(1.13) rotate(-4deg)}55%{transform:scale(0.96) rotate(3deg)}75%{transform:scale(1.05)}100%{transform:scale(1)}}
+              .kiara-react #javatar-wrap{animation:jreact-bounce 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards}
+              .kiara-react #jblush-l,.kiara-react #jblush-r{animation:jreact-blush 1.4s ease forwards}
+              .kiara-react #jsmile{animation:jreact-smile 1.4s ease forwards}
+            </style>
+          </svg>
+        </div>
         <div class="jonline"></div>
       </div>
       <div class="jinfo">
-        <div class="jname">FITBOT</div>
-        <div class="jsub">The Weight Date</div>
+        <div class="jname">KIARA</div>
+        <div class="jsub">Virtual Receptionist · The Weight Date</div>
       </div>
       <button id="jclose" onclick="toggleJudy()">✕</button>
     </div>
     <div id="jbody"></div>
     <div id="jchips"></div>
     <div id="jinputrow">
-      <!-- Nike search-pill input: soft-cloud bg, rounded-md (24px) -->
-      <input id="jinput" type="text" placeholder="Ask anything…" autocomplete="off"/>
-      <button id="jsend" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+      <input id="jinput" type="text" placeholder="Type your question…" autocomplete="off"/>
+      <button id="jmic" aria-label="Voice input" onclick="toggleVoice()">
+        <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/></svg>
+      </button>
+      <button id="jsend" aria-label="Send">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
     </div>
+    <div id="jwa-note">💬 Unknown query? We'll redirect you to WhatsApp instantly</div>
   </div>
 
   <script>
@@ -1534,8 +1802,63 @@
     });
 
     /* ── SCROLL REVEAL ── */
-    const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:0.06});
+    const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:0.06, rootMargin:'0px 0px -40px 0px'});
     document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+    /* ── SOUND ENGINE (Web Audio — no files, no latency) ── */
+    let _ac=null;
+    function getAC(){
+      if(!_ac){try{_ac=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}
+      return _ac;
+    }
+    function playPop(){
+      /* Soft pop: short sine burst */
+      const ac=getAC(); if(!ac) return;
+      try{
+        const osc=ac.createOscillator();
+        const gain=ac.createGain();
+        osc.type='sine';
+        osc.frequency.setValueAtTime(520,ac.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(260,ac.currentTime+0.08);
+        gain.gain.setValueAtTime(0.12,ac.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001,ac.currentTime+0.1);
+        osc.connect(gain); gain.connect(ac.destination);
+        osc.start(); osc.stop(ac.currentTime+0.1);
+      }catch(e){}
+    }
+    /* Wire chips to pop — delegated so works for dynamic chips too */
+    document.getElementById('jchips').addEventListener('click',e=>{
+      if(e.target.classList.contains('jchip')) playPop();
+    });
+
+    /* ── NAV SCROLL SHADOW ── */
+    const nav = document.querySelector('.nav');
+    if (nav) {
+      let navTicking = false;
+      window.addEventListener('scroll', () => {
+        if (navTicking) return;
+        navTicking = true;
+        requestAnimationFrame(() => {
+          nav.style.boxShadow = window.scrollY > 4
+            ? '0 2px 16px rgba(0,0,0,0.07)'
+            : 'none';
+          navTicking = false;
+        });
+      }, { passive: true });
+    }
+
+    /* ── SMOOTH ANCHOR SCROLL ── */
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const id=a.getAttribute('href').slice(1);
+        const target=document.getElementById(id);
+        if(!target)return;
+        e.preventDefault();
+        const navH=document.querySelector('.nav')?.offsetHeight||68;
+        const top=target.getBoundingClientRect().top+window.scrollY-navH-8;
+        window.scrollTo({top,behavior:'smooth'});
+      });
+    });
 
     /* ── VIDEO LOADING ── */
     const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1568,49 +1891,176 @@
       }
     }
 
-    /* ── FITBOT ── */
+    /* ── KIARA – Judy engine ── */
     const WA='918840655898';
     const KB={
-      greeting:{a:`Hi! I'm <strong>FitBot</strong> from <strong>The Weight Date</strong>, Prayagraj 💪<br><br>We're open to all genders, offer free diet plans, expert training, and zero hidden charges.`,c:['Timings?','Where are you?','Fees?','Free diet plans?','Contact']},
+      greeting:{a:`Hi! I'm <strong>Kiara</strong>, virtual receptionist at <strong>The Weight Date</strong>, Prayagraj 💪<br><br>We're open to all genders, offer free diet plans, expert training, and zero hidden charges. How can I help you today?`,c:['Timings?','Where are you?','Fees?','Free diet plans?','Contact']},
       timings:{a:`<strong>Mon-Thu & Sat:</strong> 6:00 AM - 10:00 PM<br><strong>Friday:</strong> 5:30 AM - 10:00 PM<br><strong>Sunday:</strong> Closed`,c:['Where are you?','Contact','Fees?']},
-      location:{a:`<strong>Civil Lines:</strong> 128, Thornhill Rd, Civil Lines, Prayagraj - near Hot Stuff Chauraha.<br><strong>Tagore Town:</strong> The Weight Date Tagore Town Branch, Tagore Town, Prayagraj.`,c:['Get directions','Timings?','Contact']},
-      directions:{a:'Opening Google Maps now.',c:['Timings?','Contact'],x:()=>window.open('https://maps.google.com/?q=The+Weight+Date+gym+Civil+Lines+Prayagraj','_blank')},
+      location:{a:`<strong>Civil Lines:</strong> 128, Thornhill Rd, Dhobi Ghat, Vivek Vihar Colony, Civil Lines, Prayagraj, UP 211002.<br><br><strong>Tagore Town:</strong> Bansi Bhawan Chauraha, 47A/1, Tagore Town, Prayagraj, UP 211002.`,c:['Get directions','Timings?','Contact']},
+      directions:{a:'Opening Google Maps now! 📍',c:['Timings?','Contact'],x:()=>window.open('https://maps.google.com/?q=The+Weight+Date+gym+Civil+Lines+Prayagraj','_blank')},
       fees:{a:`Fees are <strong>very affordable</strong> - call or WhatsApp for current rates. Training guidance, diet plans & workout schedules are all <strong>free</strong> with membership.`,c:['Contact','Free diet plans?','Timings?']},
-      diet:{a:`Yes! <strong>Free personalised diet charts</strong> tailored to your body type and goals - no extra charge.`,c:['Fees?','Contact','Timings?']},
-      training:{a:`<strong>Expert guidance on form, schedules and routines</strong> - included free. Special care for beginners!`,c:['Free diet plans?','Contact','Fees?']},
-      beginner:{a:`Absolute beginners are very welcome! <strong>Special attention</strong> to ensure you start safely and confidently from day one.`,c:['Fees?','Contact','Timings?']},
-      contact:{a:`📞 <strong>+91 88406 55898</strong><br>📸 <strong>@theweightdate</strong> (Civil Lines)<br>📸 <strong>@theweightdate_tagoretown</strong> (Tagore Town)`,c:['Timings?','Where are you?','Fees?']},
+      diet:{a:`Yes! <strong>Free personalised diet charts</strong> tailored to your body type and goals - no extra charge. 🥗`,c:['Fees?','Contact','Timings?']},
+      training:{a:`<strong>Expert guidance on form, schedules and routines</strong> - included free. Special care for beginners! 🏋️`,c:['Free diet plans?','Contact','Fees?']},
+      beginner:{a:`Absolute beginners are very welcome! <strong>Special attention</strong> to ensure you start safely and confidently from day one. 💪`,c:['Fees?','Contact','Timings?']},
+      contact:{a:`<div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+  <a href="tel:+918840655898" style="display:flex;align-items:center;gap:8px;background:var(--soft-cloud);border-radius:12px;padding:9px 13px;text-decoration:none;color:var(--ink);font-size:13px;font-weight:600">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+    +91 88406 55898
+  </a>
+  <a href="https://wa.me/918840655898" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;background:var(--ink);border-radius:12px;padding:9px 13px;text-decoration:none;color:var(--on-primary);font-size:13px;font-weight:600">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    WhatsApp Us
+  </a>
+  <a href="https://www.instagram.com/theweightdate/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;background:var(--soft-cloud);border-radius:12px;padding:9px 13px;text-decoration:none;color:var(--ink);font-size:13px;font-weight:600;border:1px solid var(--hairline-hard)">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+    @theweightdate - Civil Lines
+  </a>
+  <a href="https://www.instagram.com/theweightdate_tagoretown/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;background:var(--soft-cloud);border-radius:12px;padding:9px 13px;text-decoration:none;color:var(--ink);font-size:13px;font-weight:600;border:1px solid var(--hairline-hard)">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+    @theweightdate_tagoretown - Tagore Town
+  </a>
+</div>`,c:['Timings?','Where are you?','Fees?']},
       thanks:{a:`You're welcome! Come visit anytime 💪`,c:['Timings?','Contact']},
-      review:{a:`Members say it feels like a second home — a supportive community with real results.`,c:['Timings?','Fees?','Contact']},
+      review:{a:`Members say it feels like a second home, a supportive community with real results.`,c:['Timings?','Fees?','Contact']},
+      powerlifting:{a:`Yes! We're fully equipped for <strong>powerlifting & heavy lifting</strong> - barbells, racks, bumper plates. Serious lifters are very welcome! 🔱`,c:['Fees?','Timings?','Contact']},
     };
     const RULES=[
-      [['time','timing','open','close','hour','when','sunday','monday','friday','kab'],'timings'],
-      [['where','location','address','civil','prayagraj','find'],'location'],
-      [['direction','map','navigate','rasta'],'directions'],
-      [['fee','fees','price','cost','charge','membership','rate','kitna'],'fees'],
-      [['diet','nutrition','food','chart','meal'],'diet'],
-      [['train','guidance','workout','schedule','routine','form'],'training'],
-      [['beginner','new','start','first','basic'],'beginner'],
-      [['contact','call','phone','whatsapp','instagram','reach'],'contact'],
-      [['thank','thanks','great','awesome','perfect'],'thanks'],
-      [['review','rating','star'],'review'],
-      [['hi','hello','hey','namaste','who'],'greeting'],
+      [['time','timing','open','close','hour','when','sunday','monday','friday','saturday','kab','schedule'],'timings'],
+      [['where','location','address','civil','tagore','prayagraj','find','branch'],'location'],
+      [['direction','map','navigate','rasta','route'],'directions'],
+      [['fee','fees','price','cost','charge','membership','rate','kitna','money','paisa'],'fees'],
+      [['diet','nutrition','food','chart','meal','eating','calorie'],'diet'],
+      [['train','guidance','workout','routine','form','exercise','gym'],'training'],
+      [['powerlift','powerlifting','deadlift','squat','bench','barbell','heavy','rack'],'powerlifting'],
+      [['beginner','new','start','first','basic','never','scared'],'beginner'],
+      [['contact','call','phone','whatsapp','instagram','reach','number'],'contact'],
+      [['thank','thanks','great','awesome','perfect','good','nice'],'thanks'],
+      [['review','rating','star','opinion','experience'],'review'],
+      [['hi','hello','hey','namaste','who','sup','hii'],'greeting'],
     ];
     const CM={'Timings?':'timings','Where are you?':'location','Get directions':'directions','Fees?':'fees','Free diet plans?':'diet','Contact':'contact'};
-    function mi(m){const l=m.toLowerCase();for(const[kws,k]of RULES)if(kws.some(w=>l.includes(w)))return k;return null;}
-    function addMsg(html,type){const b=document.getElementById('jbody');const el=document.createElement('div');el.className='jmsg '+type;el.innerHTML=html;b.appendChild(el);b.scrollTop=b.scrollHeight;}
-    function setChips(list){const c=document.getElementById('jchips');c.innerHTML='';list.forEach(lbl=>{const b=document.createElement('button');b.className='jchip';b.textContent=lbl;b.onclick=()=>{addMsg(lbl,'user');hk(CM[lbl]||mi(lbl));};c.appendChild(b);});}
-    function showThink(){const b=document.getElementById('jbody');const el=document.createElement('div');el.className='jthink';el.id='jtyp';el.innerHTML='<div class="jdots"><span></span><span></span><span></span></div>';b.appendChild(el);b.scrollTop=b.scrollHeight;}
-    function remThink(){document.getElementById('jtyp')?.remove();}
-    function hk(key){if(!key){fallback();return;}const e=KB[key];if(!e){fallback();return;}showThink();setTimeout(()=>{remThink();addMsg(e.a,'bot');if(e.x)setTimeout(e.x,300);setChips(e.c||['Contact','Timings?']);},520);}
-    function fallback(){showThink();setTimeout(()=>{remThink();addMsg('Let me connect you with our team!','bot');setChips(['Contact','Timings?']);setTimeout(()=>window.open(`https://wa.me/${WA}`,'_blank'),600);},520);}
-    function send(){const i=document.getElementById('jinput');const m=i.value.trim();if(!m)return;addMsg(m,'user');i.value='';hk(mi(m));}
-    document.getElementById('jsend').onclick=send;
-    document.getElementById('jinput').addEventListener('keydown',e=>{if(e.key==='Enter')send();});
-    let judyOpen=false;
-    function toggleJudy(){const p=document.getElementById('jpanel');p.classList.toggle('open');if(p.classList.contains('open')&&!judyOpen){judyOpen=true;showThink();setTimeout(()=>{remThink();addMsg(KB.greeting.a,'bot');setChips(KB.greeting.c);},900);}}
 
-    /* ── SAVE CONTACT ── */
+    /* regex word-boundary match */
+    function mi(m){
+      const l=m.toLowerCase();
+      for(const[kws,k]of RULES){
+        if(kws.some(w=>new RegExp('\\b'+w,'i').test(l)))return k;
+      }
+      return null;
+    }
+
+    function addMsg(html,type){
+      const b=document.getElementById('jbody');
+      const el=document.createElement('div');
+      el.className='jmsg '+type;
+      el.innerHTML=html;
+      b.appendChild(el);
+      b.scrollTop=b.scrollHeight;
+    }
+    function setChips(list){
+      const c=document.getElementById('jchips');
+      c.innerHTML='';
+      list.forEach(lbl=>{
+        const b=document.createElement('button');
+        b.className='jchip';
+        b.textContent=lbl;
+        b.onclick=()=>{
+          if(navigator.vibrate)navigator.vibrate(8);
+          addMsg(lbl,'user');
+          hk(CM[lbl]||mi(lbl),lbl);
+        };
+        c.appendChild(b);
+      });
+    }
+    function showThink(){
+      const b=document.getElementById('jbody');
+      const el=document.createElement('div');
+      el.className='jthink';el.id='jtyp';
+      el.innerHTML='<div class="jdots"><span></span><span></span><span></span></div>';
+      b.appendChild(el);b.scrollTop=b.scrollHeight;
+    }
+    function remThink(){document.getElementById('jtyp')?.remove();}
+
+    /* smart WhatsApp handoff */
+    function judyNoMatch(raw){
+      showThink();
+      setTimeout(()=>{
+        remThink();
+        addMsg(`I'm not sure about that - connecting you with our team on WhatsApp! 🚀`,'bot');
+        setChips(['Timings?','Contact']);
+        setTimeout(()=>window.open(`https://wa.me/${WA}?text=${encodeURIComponent(raw)}`,'_blank'),700);
+      },520);
+    }
+
+    function hk(key,raw=''){
+      if(!key){judyNoMatch(raw);return;}
+      const e=KB[key];
+      if(!e){judyNoMatch(raw);return;}
+      showThink();
+      setTimeout(()=>{
+        remThink();
+        addMsg(e.a,'bot');
+        if(e.x)setTimeout(e.x,300);
+        setChips(e.c||['Contact','Timings?']);
+      },520);
+    }
+
+    function send(){
+      const i=document.getElementById('jinput');
+      const m=i.value.trim();
+      if(!m)return;
+      if(navigator.vibrate)navigator.vibrate(8);
+      addMsg(m,'user');
+      i.value='';
+      hk(mi(m),m);
+    }
+
+    /* voice dictation */
+    let recog=null;
+    function toggleVoice(){
+      const mic=document.getElementById('jmic');
+      const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+      if(!SR){addMsg('Voice not supported in this browser. Try typing!','bot');return;}
+      if(recog){recog.stop();recog=null;mic.classList.remove('recording');return;}
+      recog=new SR();
+      recog.lang='en-IN';
+      recog.interimResults=false;
+      recog.onstart=()=>mic.classList.add('recording');
+      recog.onresult=e=>{
+        const t=e.results[0][0].transcript;
+        document.getElementById('jinput').value=t;
+        send();
+      };
+      recog.onerror=recog.onend=()=>{mic.classList.remove('recording');recog=null;};
+      recog.start();
+    }
+
+    document.getElementById('jsend').onclick=()=>{if(navigator.vibrate)navigator.vibrate(8);send();};
+    document.getElementById('jinput').addEventListener('keydown',e=>{if(e.key==='Enter')send();});
+
+    let judyOpen=false;
+    function toggleJudy(){
+      const p=document.getElementById('jpanel');
+      if(navigator.vibrate)navigator.vibrate(10);
+      const opening=!p.classList.contains('open');
+      p.classList.toggle('open');
+      if(p.classList.contains('open')&&!judyOpen){
+        judyOpen=true;
+        showThink();
+        setTimeout(()=>{remThink();addMsg(KB.greeting.a,'bot');setChips(KB.greeting.c);},900);
+      }
+    }
+
+    /* ── KIARA AVATAR REACTION ── */
+    let kiaraReacting=false;
+    function kiaraReact(){
+      if(kiaraReacting)return;
+      kiaraReacting=true;
+      if(navigator.vibrate)navigator.vibrate([10,40,10]);
+      const head=document.getElementById('jhead');
+      head.classList.add('kiara-react');
+      setTimeout(()=>{head.classList.remove('kiara-react');kiaraReacting=false;},1500);
+    }
     function saveContact(){
       const v=['BEGIN:VCARD','VERSION:3.0','FN:The Weight Date','ORG:The Weight Date','TEL;TYPE=CELL:+918840655898','ADR;TYPE=WORK:;;128\\, Thornhill Rd;Prayagraj;UP;211002;India','URL:https://www.instagram.com/theweightdate/','END:VCARD'].join('\r\n');
       const b=new Blob([v],{type:'text/vcard'});const u=URL.createObjectURL(b);
@@ -1643,19 +2093,20 @@
     /* ── CARD ENTRANCE STAGGER ── */
     document.querySelectorAll('.card').forEach((card, i) => {
       card.style.opacity = '0';
-      card.style.transform = 'translateY(18px)';
-      card.style.transition = `opacity 0.38s ease ${i * 60}ms, transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94) ${i * 60}ms, box-shadow 0.22s ease`;
+      card.style.transform = 'translateY(22px)';
+      card.style.willChange = 'opacity, transform';
+      card.style.transition = `opacity 0.55s cubic-bezier(0.22,1,0.36,1) ${i * 55}ms, transform 0.55s cubic-bezier(0.22,1,0.36,1) ${i * 55}ms, box-shadow 0.22s ease`;
       const enter = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
           card.style.opacity = '1';
-          card.style.transform = '';
+          card.style.transform = 'translateY(0)';
           enter.disconnect();
-          /* after entrance, hand off transition control to hover/tilt */
           setTimeout(() => {
+            card.style.willChange = 'auto';
             card.style.transition = 'box-shadow 0.22s ease, opacity 0.15s';
-          }, 400 + i * 60);
+          }, 600 + i * 55);
         }
-      }, { threshold: 0.1 });
+      }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
       enter.observe(card);
     });
 
@@ -1689,7 +2140,7 @@
     }
 
     /* ── LEGAL MODAL ── */
-    const LM_TITLES = { privacy: 'Privacy Policy', terms: 'Terms of Service', refund: 'Refund Policy' };
+    const LM_TITLES = { privacy: 'Privacy Policy', terms: 'Terms of Service' };
     function openLegal(id) {
       document.querySelectorAll('.lm-doc').forEach(d => d.classList.remove('active'));
       document.getElementById('lm-' + id).classList.add('active');
@@ -1835,7 +2286,7 @@
 
           <h3>1. Definitions</h3>
           <ol>
-            <li><strong>&ldquo;Agreement&rdquo;</strong> means these Terms of Service together with all policies incorporated by reference, including the Privacy Policy and Refund Policy.</li>
+            <li><strong>&ldquo;Agreement&rdquo;</strong> means these Terms of Service together with all policies incorporated by reference, including the Privacy Policy.</li>
             <li><strong>&ldquo;Company&rdquo;</strong> means The Weight Date, operating from 128, Thornhill Road, Civil Lines, Prayagraj, Uttar Pradesh 211002.</li>
             <li><strong>&ldquo;Establishment&rdquo;</strong> means any physical premises operated by the Company at which Services are rendered.</li>
             <li><strong>&ldquo;Member&rdquo;</strong> means a natural person who has paid the applicable Fee and been enrolled by the Company.</li>
@@ -1931,7 +2382,7 @@
               </ol>
             </li>
             <li>Upon termination for cause, no refund of prepaid Fees shall be payable.</li>
-            <li>Members wishing to voluntarily terminate their Membership must do so in writing, subject to the Refund Policy.</li>
+            <li>Members wishing to voluntarily terminate their Membership must do so in writing.</li>
           </ol>
 
           <h3>10. Intellectual Property</h3>
@@ -1960,97 +2411,8 @@
           </ol>
         </div><!-- /lm-terms -->
 
-        <!-- ── REFUND POLICY ── -->
-        <div class="lm-doc" id="lm-refund">
-          <p class="lm-meta">Effective Date: 1 January 2026 &nbsp;|&nbsp; Last Revised: 1 January 2026</p>
 
-          <h3>1. Definitions</h3>
-          <ol>
-            <li><strong>&ldquo;Act&rdquo;</strong> means the Consumer Protection Act, 2019.</li>
-            <li><strong>&ldquo;E-Commerce Rules&rdquo;</strong> means the Consumer Protection (E-Commerce) Rules, 2020.</li>
-            <li><strong>&ldquo;Company&rdquo;, &ldquo;We&rdquo;</strong> means The Weight Date, 128, Thornhill Road, Civil Lines, Prayagraj, Uttar Pradesh 211002.</li>
-            <li><strong>&ldquo;Member&rdquo;</strong> means a person who has paid Fees and been enrolled for Services.</li>
-            <li><strong>&ldquo;Fees&rdquo;</strong> means all amounts paid in respect of membership, personal training, dietary consultation, or any ancillary service.</li>
-            <li><strong>&ldquo;Cancellation&rdquo;</strong> means the voluntary termination of a Membership by the Member prior to the expiry of the paid membership period.</li>
-            <li><strong>&ldquo;Cooling-Off Period&rdquo;</strong> means the period of 48 (forty-eight) hours immediately following receipt of the first payment for a new membership enrolment.</li>
-            <li><strong>&ldquo;Force Majeure Event&rdquo;</strong> has the meaning given in the Terms of Service.</li>
-          </ol>
 
-          <h3>2. Scope and Applicability</h3>
-          <ol>
-            <li>This Policy governs all claims for refund, cancellation, or fee adjustment in connection with Services provided by the Company.</li>
-            <li>This Policy is to be read in conjunction with the Terms of Service and constitutes binding obligations on both the Member and the Company.</li>
-            <li>This Policy is published pursuant to Rules 4(2) and 6 of the E-Commerce Rules.</li>
-          </ol>
-
-          <h3>3. Cooling-Off Period Refund</h3>
-          <ol>
-            <li>A Member who cancels their Membership within the Cooling-Off Period is entitled to a full refund of Fees paid, without any deduction, provided:
-              <ol class="alpha">
-                <li>The Member has not accessed, used, or entered the Establishment or availed any Service during the Cooling-Off Period; and</li>
-                <li>Written cancellation notice is received by the Grievance Officer within 48 hours of the first payment.</li>
-              </ol>
-            </li>
-            <li>Refunds under this Clause shall be processed within 7 (seven) business days to the original payment instrument.</li>
-          </ol>
-
-          <h3>4. Non-Refundable Conditions</h3>
-          <ol>
-            <li>No refund shall be payable in the following circumstances:
-              <ol class="alpha">
-                <li>Cancellation after expiry of the Cooling-Off Period for any reason not covered under Clause 5.</li>
-                <li>Suspension or termination of Membership due to breach of the Terms of Service or Code of Conduct.</li>
-                <li>Failure to utilise the Services during the paid membership period, whether due to personal scheduling, travel, change of goals, or any other personal reason.</li>
-                <li>Temporary closure of the Establishment for a period of fewer than 7 (seven) consecutive calendar days due to maintenance, public holiday, or Force Majeure Event.</li>
-                <li>Completion of any personal training session or dietary consultation already rendered.</li>
-                <li>Purchase of non-membership products or ancillary items once delivered or accessed.</li>
-              </ol>
-            </li>
-          </ol>
-
-          <h3>5. Exceptional Refund Eligibility</h3>
-          <ol>
-            <li>Notwithstanding Clause 4, the Company may, at its sole and absolute discretion, consider a prorated refund in the following exceptional circumstances:
-              <ol class="alpha">
-                <li><strong>Permanent Medical Incapacity:</strong> Where a Member provides a certificate from a registered medical practitioner confirming a permanent medical condition preventing physical exercise. The refund shall be calculated on a pro-rata basis for the unutilised membership period only.</li>
-                <li><strong>Permanent Relocation:</strong> Where a Member provides documentary evidence of permanent relocation to a location beyond 50 km of all Establishment locations, and such relocation occurs more than 30 days before the membership expiry date.</li>
-              </ol>
-            </li>
-            <li>Applications for exceptional refunds must be submitted in writing to the Grievance Officer within 15 (fifteen) days of the triggering event, accompanied by all relevant supporting documentation.</li>
-            <li>A processing fee of &#8377;200 (Rupees Two Hundred only) shall be deducted from all approved exceptional refunds under Clause 5.1.</li>
-          </ol>
-
-          <h3>6. Extended Closure Credit</h3>
-          <ol>
-            <li>In the event the Establishment is closed for more than 7 (seven) consecutive calendar days due to reasons within the Company&rsquo;s control, Members shall be entitled to an equivalent extension of their membership period, or at the Member&rsquo;s election, a prorated credit applicable to future membership renewal.</li>
-            <li>No cash refund shall be payable under this Clause. The sole remedy is membership extension or renewal credit.</li>
-          </ol>
-
-          <h3>7. Refund Process</h3>
-          <ol>
-            <li>All refund requests must be submitted in writing via:
-              <ol class="alpha">
-                <li>WhatsApp or telephone to +91 88406 55898, followed by written confirmation; or</li>
-                <li>Direct written communication addressed to the Grievance Officer at the Establishment address.</li>
-              </ol>
-            </li>
-            <li>The Company shall acknowledge receipt of a refund request within 48 hours.</li>
-            <li>Eligible refunds shall be processed within 7 (seven) business days of written approval.</li>
-            <li>Refunds shall be credited exclusively to the original payment instrument. No cash refunds shall be issued for payments received via digital or electronic modes.</li>
-            <li>In cases of dispute regarding eligibility, the matter shall be decided by the Grievance Officer, whose decision is final, subject to the Member&rsquo;s right to approach the competent Consumer Forum under the Act.</li>
-          </ol>
-
-          <h3>8. Consumer Forum</h3>
-          <ol>
-            <li>Nothing in this Policy derogates from the Member&rsquo;s statutory rights under the Consumer Protection Act, 2019 to approach the District Consumer Disputes Redressal Commission at Prayagraj, Uttar Pradesh.</li>
-          </ol>
-
-          <h3>9. Governing Law and Jurisdiction</h3>
-          <ol>
-            <li>This Policy is governed by the Consumer Protection Act, 2019 and the Consumer Protection (E-Commerce) Rules, 2020.</li>
-            <li>All disputes arising from or in connection with this Policy shall be subject to the exclusive jurisdiction of the competent courts and consumer forums at Prayagraj, Uttar Pradesh.</li>
-          </ol>
-        </div><!-- /lm-refund -->
 
       </div><!-- /lm-body -->
     </div><!-- /lm-panel -->
