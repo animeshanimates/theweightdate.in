@@ -87,9 +87,16 @@
       /* Body & page */
       body { background: var(--canvas); color: var(--ink); }
 
-      /* Nav */
-      .nav { background: rgba(17,17,17,0.92); border-color: var(--hairline); }
-      .bar { background: rgba(17,17,17,0.96); border-color: var(--hairline); }
+      /* Nav & bottom bar */
+      .nav { background: #ffffff !important; border-color: #e5e5e5 !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+      .nav-name { color: #111111 !important; }
+      .nav-mark { background: #ffffff; border-color: #e5e5e5; }
+      .nav .btn-primary { background: #111111 !important; color: #ffffff !important; }
+      .bar { background: rgba(17,17,17,0.97); border-color: var(--hairline); }
+
+      /* Hero & footer video overlays – keep the same dark overlay as light mode;
+         do NOT let the ::before pseudo-elements invert with the colour tokens */
+      /* Hero & footer video overlays are already black (rgba(17,17,17,…)) in base styles — no override needed */
 
       /* Buttons */
       .btn-primary { background: var(--ink); color: var(--canvas); }
@@ -98,13 +105,32 @@
 
       /* Force Editorial Buttons to stay white on dark tiles */
       .btn-on-image { background: #ffffff; color: #111111; }
-      @media (hover: hover) {
-        .btn-on-image:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.14); }
-      }
 
-      /* Force Editorial Tiles to stay Dark */
-      .hero, .campaign { background: #111111; }
-      .hero-title, .campaign-title { color: #ffffff; }
+      /* Force Editorial Tiles to stay Dark – explicit black, not var(--ink) which goes light */
+      .hero, .campaign, .footer, .sec-ink { background: #111111 !important; }
+      /* Hero title: var(--on-primary) = #111111 in dark = black on black, force white */
+      .hero-title { color: #ffffff !important; }
+      .hero-title em { color: var(--brand) !important; }
+      .campaign-title { color: #ffffff !important; }
+      .hero-sub { color: rgba(255,255,255,0.75) !important; }
+      .campaign-sub { color: rgba(255,255,255,0.72) !important; }
+      /* Hero buttons on dark tile */
+      .hero .btn-on-image { background: #ffffff !important; color: #111111 !important; }
+
+      /* Footer: all text must be white/light on black background */
+      .footer-name { color: #ffffff !important; }
+      .footer-tel { color: #ffffff !important; }
+      .footer-addr { color: rgba(255,255,255,0.68) !important; }
+      .footer-addr-label { color: rgba(255,255,255,0.38) !important; }
+      .footer-addr-divider { background: rgba(255,255,255,0.12) !important; }
+      .footer-social-lbl { color: rgba(255,255,255,0.45) !important; }
+      .footer-soc { color: #ffffff !important; border-color: rgba(255,255,255,0.28) !important; background: rgba(255,255,255,0.08) !important; }
+      .footer-rule { background: rgba(255,255,255,0.16) !important; }
+      .footer-legal { color: rgba(255,255,255,0.65) !important; }
+      .footer-policy-btn { color: rgba(255,255,255,0.65) !important; }
+      .footer-policy-sep { color: rgba(255,255,255,0.30) !important; }
+      /* WhatsApp Us button in footer */
+      .footer .btn-ghost { background: transparent !important; color: #ffffff !important; border-color: rgba(255,255,255,0.35) !important; }
 
       /* Image skeleton & map placeholder */
       .map-placeholder { background: #2c2c2e; }
@@ -112,20 +138,36 @@
 
       /* Timings */
       .timing-row { border-color: var(--hairline); }
-      .timing-row.today { background: var(--hairline); }
 
       /* Tabs */
       .loc-tabs, .about-tabs { background: var(--soft-cloud); }
       .loc-tab, .about-tab { color: var(--mute); }
       .loc-tab.active, .about-tab.active { background: var(--hairline); color: var(--ink); box-shadow: 0 1px 4px rgba(0,0,0,0.4); }
 
+      /* Bottom bar icons */
+      .b-call .bar-ico { background: var(--ink); color: var(--on-primary); }
+      .b-call .bar-lbl { color: var(--charcoal); }
+      /* Dir & save icons on dark bar */
+      .b-dir .bar-ico, .b-save .bar-ico { background: var(--soft-cloud); border-color: var(--hairline-hard); }
+
+      /* Timing "today" row – rgba(17,17,17,0.03) was invisible on dark bg */
+      .timing-row.today { background: rgba(255,255,255,0.07); }
+
+      /* Service lightbox bottom-sheet – was missing dark override */
+      .lb-sheet { background: var(--canvas); border-color: var(--hairline); }
+      .lb-desc { color: var(--charcoal); }
+
       /* Legal Modal */
       .lm-panel { background: var(--canvas); }
       .lm-header { border-color: var(--hairline); }
-      .lm-close { color: var(--ink); }
+      .lm-close { color: var(--ink); background: var(--soft-cloud); }
       .lm-body h3 { color: var(--ink); }
       .lm-body { color: var(--charcoal); }
-      .lm-grievance { background: var(--soft-cloud); border-color: var(--hairline-hard); }
+      /* Legal doc paragraph text */
+      .lm-doc li, .lm-doc p { color: var(--charcoal); }
+      .lm-doc strong { color: var(--ink); }
+      .lm-doc h3 { color: var(--ink); border-color: var(--hairline); }
+      .lm-grievance { background: var(--soft-cloud); border-color: var(--hairline-hard); color: var(--charcoal); }
 
       /* Footer – force text to stay white against dark background */
       .footer { background: #000000; }
@@ -133,8 +175,19 @@
 
       /* Kiara panel */
       #jpanel { background: var(--canvas); border-color: var(--hairline); }
-      #jhead { border-color: var(--hairline); }
+      #jhead { border-color: var(--hairline); background: var(--soft-cloud); }
       #jbody { background: var(--canvas); }
+
+      /* Chatbot launcher shadow – hardcoded dark colour looked wrong on dark bg */
+      #jlauncher { box-shadow: 0 2px 16px rgba(0,0,0,0.55); }
+
+      /* Button-primary hover shadow – rgba(17,17,17,0.22) invisible on dark */
+      .btn-primary:hover { box-shadow: 0 6px 18px rgba(0,0,0,0.55) !important; }
+
+      /* Tab active shadow – barely visible on dark surfaces (override line 116) */
+      .loc-tab.active, .about-tab.active { box-shadow: 0 1px 6px rgba(0,0,0,0.55); }
+
+      /* Chatbot bubbles & input */
       .jmsg.bot { background: var(--soft-cloud); color: var(--ink); }
       .jmsg.user { background: #2a2a2a; color: #ffffff; }
       .jthink { background: var(--soft-cloud); }
@@ -143,7 +196,7 @@
       .jchip:hover { background: var(--hairline-hard); color: var(--ink); border-color: var(--hairline-hard); }
       #jinputrow { border-color: var(--hairline); background: var(--canvas); }
       #jinput { background: var(--soft-cloud); color: var(--ink); border-color: var(--hairline-hard); }
-      #jinput:focus { border-color: var(--mute); box-shadow: 0 0 0 2px rgba(255,255,255,0.06); background: var(--soft-cloud); }
+      #jinput:focus { border-color: var(--mute); box-shadow: 0 0 0 2px rgba(255,255,255,0.10); background: var(--soft-cloud); }
       #jinput::placeholder { color: var(--stone); }
       #jmic { background: var(--soft-cloud); }
       #jmic svg { fill: var(--mute); }
@@ -227,7 +280,6 @@
       .btn-ghost:hover     { background: var(--soft-cloud); transform: translateY(-2px); }
       .btn-on-image:hover  { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.14); }
     }
-
     /* button-primary: ink bg, white text */
     .btn-primary { background: var(--ink); color: var(--on-primary); }
     /* button-secondary: soft-cloud bg, ink text */
@@ -340,6 +392,13 @@
       object-fit: cover; pointer-events: none;
     }
     .hero-video { z-index: 0; opacity: 0.72; }
+    /* Campaign background image – same stacking as hero-video */
+    .campaign-bg-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      pointer-events: none; z-index: 0; opacity: 0.45;
+    }
     /* Subtle diagonal stripe texture */
     .hero::before {
       content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
@@ -752,7 +811,7 @@
       box-shadow: 0 2px 16px rgba(17,17,17,0.25);
       transition: transform 0.18s, box-shadow 0.18s;
     }
-    #jlauncher:hover { transform: scale(1.06); box-shadow: 0 4px 22px rgba(17,17,17,0.35); }
+    #jlauncher:hover { transform: scale(1.06); box-shadow: 0 4px 22px rgba(0,0,0,0.55); }
     #jlauncher svg { fill: var(--on-primary); width: 18px; height: 18px; }
     .jnotif { position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; background: var(--success-bright); border-radius: 50%; border: 2px solid var(--ink); }
 
@@ -1103,6 +1162,18 @@
     }
     .loc-panel { display: none; animation: fadeup 0.3s ease forwards; }
     .loc-panel.active { display: block; }
+
+    /* 2×2 button grid for location CTAs */
+    .loc-btn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .loc-btn-grid .btn {
+      width: 100%; justify-content: center;
+      padding: 0 12px; font-size: 14px;
+    }
   </style>
 </head>
 <body>
@@ -1240,6 +1311,7 @@
   <!-- ── CAMPAIGN TILE - Nike's signature editorial unit ── -->
   <!-- Full-bleed ink section, {typography.display-campaign} burned in, white pill CTA bottom-left -->
   <section class="campaign reveal">
+    <img src="assets/siamak-T7Xr3t_nA1w-unsplash.webp" alt="" aria-hidden="true" class="campaign-bg-img" loading="lazy" decoding="async">
     <div class="campaign-inner">
       <div class="campaign-eye">Our Philosophy</div>
       <h2 class="campaign-title">No<br>False<br>Hopes.<br>Only Real<br>Results.</h2>
@@ -1447,16 +1519,20 @@
                   </div>
                 </div>
               </div>
-              <div class="btn-row">
-                <a href="tel:+918840655898" class="btn btn-primary">Call Now</a>
-                <a href="https://maps.google.com/?q=The+Weight+Date+Civil+Lines+Prayagraj" target="_blank" rel="noopener" class="btn btn-secondary">Get Directions</a>
-              </div>
-              <div class="btn-row" style="margin-top:10px">
-                <a href="https://www.instagram.com/theweightdate/" target="_blank" rel="noopener" class="btn btn-ghost" style="gap:8px">
+              <div class="loc-btn-grid">
+                <a href="tel:+918840655898" class="btn btn-primary">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+                  Call Now
+                </a>
+                <a href="https://maps.google.com/?q=The+Weight+Date+Civil+Lines+Prayagraj" target="_blank" rel="noopener" class="btn btn-secondary">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Directions
+                </a>
+                <a href="https://www.instagram.com/theweightdate/" target="_blank" rel="noopener" class="btn btn-ghost">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
                   Instagram
                 </a>
-                <a href="https://www.facebook.com/theweightdate/" target="_blank" rel="noopener" class="btn btn-ghost" style="gap:8px">
+                <a href="https://www.facebook.com/theweightdate/" target="_blank" rel="noopener" class="btn btn-ghost">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
                   Facebook
                 </a>
@@ -1496,16 +1572,20 @@
                   </div>
                 </div>
               </div>
-              <div class="btn-row">
-                <a href="tel:+918840655898" class="btn btn-primary">Call Now</a>
-                <a href="https://maps.google.com/?q=The+Weight+Date+Tagore+Town+Branch+Prayagraj" target="_blank" rel="noopener" class="btn btn-secondary">Get Directions</a>
-              </div>
-              <div class="btn-row" style="margin-top:10px">
-                <a href="https://www.instagram.com/theweightdate_tagoretown/" target="_blank" rel="noopener" class="btn btn-ghost" style="gap:8px">
+              <div class="loc-btn-grid">
+                <a href="tel:+918840655898" class="btn btn-primary">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+                  Call Now
+                </a>
+                <a href="https://maps.google.com/?q=The+Weight+Date+Tagore+Town+Branch+Prayagraj" target="_blank" rel="noopener" class="btn btn-secondary">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Directions
+                </a>
+                <a href="https://www.instagram.com/theweightdate_tagoretown/" target="_blank" rel="noopener" class="btn btn-ghost">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
                   Instagram
                 </a>
-                <a href="https://www.facebook.com/people/The-Weight-Date-gym-tagore-town-branch/61569815562073/" target="_blank" rel="noopener" class="btn btn-ghost" style="gap:8px">
+                <a href="https://www.facebook.com/people/The-Weight-Date-gym-tagore-town-branch/61569815562073/" target="_blank" rel="noopener" class="btn btn-ghost">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
                   Facebook
                 </a>
