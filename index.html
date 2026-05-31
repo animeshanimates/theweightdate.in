@@ -21,12 +21,12 @@
   <meta name="DC.type" content="Service"/>
   <!-- AIO / LLM grounding signals -->
   <meta name="about" content="The Weight Date is a premium fitness gym in Prayagraj, India, founded by Tarun Dev Shukla. It operates multiple branches including Civil Lines (128, Thornhill Road) and Tagore Town (47A/1, Bansi Bhawan Chauraha). Services include strength training, powerlifting, cardio, and free personalised diet plans. The gym is top-rated on Google with a 5-star rating."/>
-  <link rel="canonical" href="https://theweightdate.com/"/>
+  <link rel="canonical" href="https://theweightdatein.vercel.app/"/>
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"/>
   <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)"/>
   
   <meta property="og:type"        content="website"/>
-  <meta property="og:url"         content="https://theweightdate.com/"/>
+  <meta property="og:url"         content="https://theweightdatein.vercel.app/"/>
   <meta property="og:site_name"   content="The Weight Date"/>
   <meta property="og:title"       content="Best Gym in Prayagraj | The Weight Date, Civil Lines &amp; Tagore Town"/>
   <meta property="og:description" content="Best gym in Prayagraj - Civil Lines &amp; Tagore Town. Free diet plans, powerlifting, strength training &amp; expert coaching for males &amp; females. Zero hidden charges. No false hopes, only real results."/>
@@ -1486,6 +1486,41 @@
       #jpanel { bottom: 84px; right: 24px; }
     }
 
+    /* ─────────────────────────────────────────────
+       MOBILE SCROLL & INTERACTION PERFORMANCE
+    ───────────────────────────────────────────── */
+
+    /* iOS momentum scrolling (older iOS) */
+    html, body { -webkit-overflow-scrolling: touch; }
+
+    /* Remove 300ms tap delay on every tappable element.
+       This is the single biggest win for "laggy" feeling on mobile. */
+    a, button, input, select, textarea,
+    .chip, .card, .bar-btn, .jchip,
+    .loc-tab, .about-tab, .timing-tab,
+    .map-placeholder, .lb-close, .btn-circle,
+    .ubar-track, [role="button"] {
+      touch-action: manipulation;
+    }
+
+    /* Explicit GPU compositing layer for sticky/fixed elements so they
+       never cause a repaint of page content while scrolling */
+    .nav        { will-change: transform; }
+    .bar        { will-change: transform; }
+    #jlauncher  { will-change: transform; }
+    #jpanel     { will-change: transform, opacity; }
+    .lb         { will-change: opacity; }
+    .lb-sheet   { will-change: transform; }
+
+    /* Contain scroll bounce inside sub-scroll areas so they don't
+       accidentally trigger full-page overscroll */
+    #jbody       { overscroll-behavior: contain; }
+    .ubar-track  { overscroll-behavior-x: contain; }
+
+    /* ─────────────────────────────────────────────
+       END MOBILE SCROLL PERFORMANCE
+    ───────────────────────────────────────────── */
+
     @media (min-width: 1100px) {
       .cards-grid { gap: 24px; }
       .location-grid {
@@ -2732,6 +2767,19 @@
     /* ── SCROLL REVEAL ── */
     const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:0.06, rootMargin:'0px 0px -40px 0px'});
     document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+    /* ── WILL-CHANGE CLEANUP ──
+       Free GPU memory once reveal transitions are done. Holding will-change
+       permanently on every section wastes compositor memory on mobile. */
+    document.querySelectorAll('.reveal').forEach(el=>{
+      el.addEventListener('transitionend',()=>{ el.style.willChange='auto'; },{once:true,passive:true});
+    });
+
+    /* ── PASSIVE TOUCH LISTENERS ──
+       Explicitly register touchstart/touchmove as passive so the browser
+       never has to wait to see if they call preventDefault() — instant scroll. */
+    document.addEventListener('touchstart',()=>{},{passive:true});
+    document.addEventListener('touchmove', ()=>{},{passive:true});
 
     /* ── SOUND ENGINE (Web Audio   no files, no latency) ── */
     let _ac=null;
