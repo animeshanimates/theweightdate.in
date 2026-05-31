@@ -21,16 +21,16 @@
   <meta name="DC.type" content="Service"/>
   <!-- AIO / LLM grounding signals -->
   <meta name="about" content="The Weight Date is a premium fitness gym in Prayagraj, India, founded by Tarun Dev Shukla. It operates multiple branches including Civil Lines (128, Thornhill Road) and Tagore Town (47A/1, Bansi Bhawan Chauraha). Services include strength training, powerlifting, cardio, and free personalised diet plans. The gym is top-rated on Google with a 5-star rating."/>
-  <link rel="canonical" href="https://theweightdatein.vercel.app/"/>
+  <link rel="canonical" href="https://theweightdate.com/"/>
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"/>
   <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)"/>
   
   <meta property="og:type"        content="website"/>
-  <meta property="og:url"         content="https://theweightdatein.vercel.app/"/>
+  <meta property="og:url"         content="https://theweightdate.com/"/>
   <meta property="og:site_name"   content="The Weight Date"/>
   <meta property="og:title"       content="Best Gym in Prayagraj | The Weight Date, Civil Lines &amp; Tagore Town"/>
   <meta property="og:description" content="Best gym in Prayagraj - Civil Lines &amp; Tagore Town. Free diet plans, powerlifting, strength training &amp; expert coaching for males &amp; females. Zero hidden charges. No false hopes, only real results."/>
-  <meta property="og:image"       content="https://theweightdatein.vercel.app/assets/og-image.jpg"/>
+  <meta property="og:image"       content="https://theweightdate.com/assets/og-image.jpg"/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height"content="630"/>
   <meta property="og:image:alt"   content="The Weight Date, best gym in Prayagraj, Civil Lines and Tagore Town branches"/>
@@ -40,7 +40,7 @@
   <meta name="twitter:site"        content="@theweightdate"/>
   <meta name="twitter:title"       content="Best Gym in Prayagraj | The Weight Date"/>
   <meta name="twitter:description" content="Best gym in Prayagraj, Civil Lines &amp; Tagore Town. Free diet plans, powerlifting, strength training. No hidden charges. No false hopes, only real results."/>
-  <meta name="twitter:image"       content="https://theweightdatein.vercel.app/assets/og-image.jpg"/>
+  <meta name="twitter:image"       content="https://theweightdate.com/assets/og-image.jpg"/>
   <meta name="twitter:image:alt"   content="The Weight Date gym, Prayagraj"/>
 
   <!-- Geo & regional targeting -->
@@ -620,7 +620,8 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
-      overscroll-behavior-y: none; 
+      overscroll-behavior-y: none;
+      padding-bottom: calc(var(--bar-h) + var(--safe));
     }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
@@ -1644,7 +1645,7 @@
     }
     .lm-doc h3:first-of-type { margin-top: 0; }
     .lm-doc ol { padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 7px; }
-    .lm-doc li { font-size: 13px; font-weight: 400; line-height: 1.75; color: var(--charcoal); }
+    .lm-doc li, .lm-doc p { font-size: 13px; font-weight: 400; line-height: 1.75; color: var(--charcoal); }
     .lm-doc ol.alpha { list-style-type: lower-alpha; margin-top: 6px; padding-left: 20px; }
     .lm-doc strong { color: var(--ink); font-weight: 600; }
     .lm-grievance {
@@ -1756,7 +1757,7 @@
   <nav class="nav" role="navigation" aria-label="The Weight Date, Best Gym in Prayagraj, Main Navigation">
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="The Weight Date, Best Gym in Prayagraj">
-        <div class="nav-mark"><img src="assets/logo.webp" alt="The Weight Date logo" loading="eager" decoding="sync" fetchpriority="high" width="32" height="32"></div>
+        <div class="nav-mark"><img src="assets/logo.webp" alt="The Weight Date logo" loading="eager" decoding="async" fetchpriority="high" width="32" height="32"></div>
         <div class="nav-name">THE WEIGHT DATE</div>
       </a>
       
@@ -1962,8 +1963,8 @@
 
       
       <div class="about-tabs">
-        <button class="about-tab active" onclick="switchAbout('store',this)">Our Gym</button>
-        <button class="about-tab" onclick="switchAbout('owner',this)">Meet the Owner</button>
+        <button type="button" class="about-tab active" onclick="switchAbout('store',this)">Our Gym</button>
+        <button type="button" class="about-tab" onclick="switchAbout('owner',this)">Meet the Owner</button>
       </div>
 
       
@@ -2007,7 +2008,7 @@
 
         <div class="about-actions">
           <a href="tel:+918840655898" class="btn btn-primary">Contact Us</a>
-          <a href="#loc-civil" class="btn btn-secondary" onclick="switchLoc('civil', document.querySelectorAll('.loc-tab')[0])">Visit Gym</a>
+          <a href="#sec-location" class="btn btn-secondary" onclick="event.preventDefault();switchLoc('civil', document.querySelector('#sec-location .loc-tab'));window.scrollTo({top:document.getElementById('sec-location').getBoundingClientRect().top+window.scrollY-(document.querySelector('.nav')?.offsetHeight||68)-8,behavior:'smooth'})">Visit Gym</a>
         </div>
       </div>
 
@@ -2080,8 +2081,8 @@
 
       
       <div class="loc-tabs">
-        <button class="loc-tab timing-tab active" onclick="switchTiming('civil', this)">Civil Lines</button>
-        <button class="loc-tab timing-tab" onclick="switchTiming('tagore', this)">Tagore Town</button>
+        <button type="button" class="loc-tab timing-tab active" onclick="switchTiming('civil', this)">Civil Lines</button>
+        <button type="button" class="loc-tab timing-tab" onclick="switchTiming('tagore', this)">Tagore Town</button>
       </div>
 
       
@@ -2098,16 +2099,16 @@
   </section>
 
   
-  <section class="sec reveal" role="region" aria-labelledby="sec-location">
+  <section id="sec-location" class="sec reveal" role="region" aria-labelledby="sec-location-heading">
     <div class="wrap">
       <div class="sec-head">
         <div class="t-eye sec-eye">Find Us</div>
-        <h2 class="t-xl sec-title" id="sec-location">Location</h2>
+        <h2 class="t-xl sec-title" id="sec-location-heading">Location</h2>
       </div>
 
       <div class="loc-tabs">
-        <button class="loc-tab active" onclick="switchLoc('civil', this)">Civil Lines</button>
-        <button class="loc-tab" onclick="switchLoc('tagore', this)">Tagore Town</button>
+        <button type="button" class="loc-tab active" onclick="switchLoc('civil', this)">Civil Lines</button>
+        <button type="button" class="loc-tab" onclick="switchLoc('tagore', this)">Tagore Town</button>
       </div>
 
       
@@ -2116,7 +2117,7 @@
           <div class="branch-card">
             <div class="branch-name">Civil Lines Branch</div>
             <div class="map-wrap">
-              <button class="map-placeholder" onclick="loadMap(this,'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.355839180404!2d81.83593467539042!3d25.459790877542893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399acb0ebc01b463%3A0x2ff834cfca0a2735!2sThe%20Weight%20Date!5e0!3m2!1sen!2sin!4v1780083677516!5m2!1sen!2sin','The Weight Date Civil Lines branch map')" aria-label="Load interactive map for Civil Lines branch">
+              <button type="button" class="map-placeholder" onclick="loadMap(this,'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.355839180404!2d81.83593467539042!3d25.459790877542893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399acb0ebc01b463%3A0x2ff834cfca0a2735!2sThe%20Weight%20Date!5e0!3m2!1sen!2sin!4v1780083677516!5m2!1sen!2sin','The Weight Date Civil Lines branch map')" aria-label="Load interactive map for Civil Lines branch">
                 <div class="map-placeholder-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
                 <div class="map-placeholder-label">Tap to load map</div>
                 <div class="map-placeholder-sub">Civil Lines, Prayagraj</div>
@@ -2169,7 +2170,7 @@
           <div class="branch-card">
             <div class="branch-name">Tagore Town Branch</div>
             <div class="map-wrap">
-              <button class="map-placeholder" onclick="loadMap(this,'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.5831023373353!2d81.85941918371338!3d25.452197863450426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399acbf9ca9fbf5b%3A0x70dfe075f0042ee8!2sThe%20Weight%20Date%20tagore%20town%20branch!5e0!3m2!1sen!2sin!4v1780083719081!5m2!1sen!2sin','The Weight Date Tagore Town branch map')" aria-label="Load interactive map for Tagore Town branch">
+              <button type="button" class="map-placeholder" onclick="loadMap(this,'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.5831023373353!2d81.85941918371338!3d25.452197863450426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399acbf9ca9fbf5b%3A0x70dfe075f0042ee8!2sThe%20Weight%20Date%20tagore%20town%20branch!5e0!3m2!1sen!2sin!4v1780083719081!5m2!1sen!2sin','The Weight Date Tagore Town branch map')" aria-label="Load interactive map for Tagore Town branch">
                 <div class="map-placeholder-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
                 <div class="map-placeholder-label">Tap to load map</div>
                 <div class="map-placeholder-sub">Tagore Town, Prayagraj</div>
@@ -2422,7 +2423,7 @@
     <div class="wrap">
       <div class="footer-inner">
         <div class="footer-logo">
-          <div class="footer-mark"><img src="assets/logo.webp" alt="The Weight Date logo" loading="eager" decoding="sync" width="30" height="30"></div>
+          <div class="footer-mark"><img src="assets/logo.webp" alt="The Weight Date logo" loading="eager" decoding="async" width="30" height="30"></div>
           <div class="footer-name">THE WEIGHT DATE</div>
         </div>
         <address class="footer-addr-wrap" style="font-style:normal">
@@ -2474,21 +2475,51 @@
         <div class="footer-legal">
           © 2026 The Weight Date · Prayagraj · All rights reserved
           <div class="footer-policy-row">
-            <button class="footer-policy-btn" onclick="openLegal('privacy')">Privacy Policy</button>
+            <button type="button" class="footer-policy-btn" onclick="openLegal('privacy')">Privacy Policy</button>
             <span class="footer-policy-sep">·</span>
-            <button class="footer-policy-btn" onclick="openLegal('terms')">Terms of Service</button>
+            <button type="button" class="footer-policy-btn" onclick="openLegal('terms')">Terms of Service</button>
 
-          </div>          </div>
+          </div>
         </div>
       </div>
     </div>
   </footer>
 
+  <!-- ── BOTTOM NAVIGATION BAR (mobile) ── -->
+  <nav class="bar" aria-label="Quick actions">
+    <div class="bar-inner">
+      <a href="tel:+918840655898" class="bar-btn b-call" aria-label="Call The Weight Date">
+        <div class="bar-ico">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        </div>
+        <span class="bar-lbl">Call</span>
+      </a>
+      <a href="https://wa.me/918840655898" target="_blank" rel="noopener" class="bar-btn b-wa" aria-label="WhatsApp The Weight Date">
+        <div class="bar-ico">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </div>
+        <span class="bar-lbl">WhatsApp</span>
+      </a>
+      <a href="https://maps.google.com/?q=The+Weight+Date+Civil+Lines+Prayagraj" target="_blank" rel="noopener" class="bar-btn b-dir" aria-label="Get directions to The Weight Date">
+        <div class="bar-ico">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <span class="bar-lbl">Directions</span>
+      </a>
+      <button type="button" class="bar-btn b-save" onclick="saveContact()" aria-label="Save contact card for The Weight Date">
+        <div class="bar-ico">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <span class="bar-lbl">Save</span>
+      </button>
+    </div>
+  </nav>
+
   
   <div class="lb" id="lb" onclick="closeLb(event)" role="dialog" aria-modal="true">
     <div class="lb-sheet">
       <div class="lb-handle"></div>
-      <button class="lb-close" onclick="closeLb()" aria-label="Close">✕</button>
+      <button type="button" class="lb-close" onclick="closeLb()" aria-label="Close">✕</button>
       <div class="lb-name" id="lb-name"></div>
       <div class="lb-desc" id="lb-desc"></div>
       <a href="https://wa.me/918840655898" target="_blank" rel="noopener" class="btn btn-primary" style="width:fit-content;margin-top:8px">Enquire on WhatsApp</a>
@@ -2496,7 +2527,7 @@
   </div>
 
   
-  <button id="jlauncher" onclick="toggleJudy()" aria-label="Chat with Kiara, our virtual receptionist">
+  <button type="button" id="jlauncher" onclick="toggleJudy()" aria-label="Chat with Kiara, our virtual receptionist" aria-expanded="false" aria-controls="jpanel">
     <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
     <div class="jnotif"></div>
   </button>
@@ -2625,16 +2656,16 @@
         <div class="jname">KIARA</div>
         <div class="jsub">Virtual Receptionist · The Weight Date</div>
       </div>
-      <button id="jclose" onclick="toggleJudy()">✕</button>
+      <button type="button" id="jclose" onclick="toggleJudy()">✕</button>
     </div>
     <div id="jbody"></div>
     <div id="jchips"></div>
     <div id="jinputrow">
       <input id="jinput" type="text" placeholder="Type your question…" autocomplete="off"/>
-      <button id="jmic" aria-label="Voice input" onclick="toggleVoice()">
+      <button type="button" id="jmic" aria-label="Voice input" onclick="toggleVoice()">
         <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/></svg>
       </button>
-      <button id="jsend" aria-label="Send">
+      <button type="button" id="jsend" aria-label="Send">
         <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
       </button>
     </div>
@@ -2706,20 +2737,38 @@
     function openLb(name,desc){
       document.getElementById('lb-name').textContent=name;
       document.getElementById('lb-desc').textContent=desc;
-      document.getElementById('lb').classList.add('open');
+      const lb=document.getElementById('lb');
+      lb.classList.add('open');
+      lb.removeAttribute('hidden');
       document.body.style.overflow='hidden';
+      /* Move focus into the sheet for accessibility */
+      setTimeout(()=>{
+        const first=lb.querySelector('button,a,[tabindex="0"]');
+        if(first)first.focus();
+      },50);
     }
     function closeLb(e){
-      if(e&&e.target!==document.getElementById('lb')&&!e.target.classList.contains('lb-close'))return;
+      /* Called directly (no event) from the close button, or with event from backdrop click */
+      if(e&&e.target!==document.getElementById('lb'))return;
       const lb=document.getElementById('lb');
       lb.classList.remove('open');
       document.body.style.overflow='';
     }
     document.addEventListener('keydown',e=>{
-      if(e.key==='Escape'){
-        document.getElementById('lb').classList.remove('open');
+      if(e.key!=='Escape')return;
+      /* Close any open overlay - order: chat panel, lightbox, legal modal */
+      if(document.getElementById('jpanel').classList.contains('open')){
         document.getElementById('jpanel').classList.remove('open');
+        document.getElementById('jlauncher').focus();
+        return;
+      }
+      if(document.getElementById('lb').classList.contains('open')){
+        document.getElementById('lb').classList.remove('open');
         document.body.style.overflow='';
+        return;
+      }
+      if(document.getElementById('lm').classList.contains('open')){
+        closeLegal();
       }
     });
 
@@ -2966,20 +3015,23 @@
         document.getElementById('jinput').value=t;
         send();
       };
-      recog.onerror=recog.onend=()=>{mic.classList.remove('recording');recog=null;};
+      recog.onerror=()=>{mic.classList.remove('recording');recog=null;};
+      recog.onend=()=>{mic.classList.remove('recording');recog=null;};
       recog.start();
     }
 
-    document.getElementById('jsend').onclick=()=>{if(navigator.vibrate)navigator.vibrate(8);send();};
+    document.getElementById('jsend').onclick=send;
     document.getElementById('jinput').addEventListener('keydown',e=>{if(e.key==='Enter')send();});
 
     let judyOpen=false;
     function toggleJudy(){
       const p=document.getElementById('jpanel');
+      const launcher=document.getElementById('jlauncher');
       if(navigator.vibrate)navigator.vibrate(10);
-      const opening=!p.classList.contains('open');
       p.classList.toggle('open');
-      if(p.classList.contains('open')&&!judyOpen){
+      const isOpen=p.classList.contains('open');
+      launcher.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if(isOpen&&!judyOpen){
         judyOpen=true;
         showThink();
         setTimeout(()=>{remThink();addMsg(KB.greeting.a,'bot');setChips(KB.greeting.c);},900);
@@ -3081,27 +3133,30 @@
       document.getElementById('lm-' + id).classList.add('active');
       document.getElementById('lm-title').textContent = LM_TITLES[id] || id;
       document.getElementById('lm-body').scrollTop = 0;
-      document.getElementById('lm').classList.add('open');
+      const lm = document.getElementById('lm');
+      lm.classList.add('open');
       document.body.style.overflow = 'hidden';
+      /* Move focus to close button for keyboard/screen-reader users */
+      setTimeout(() => {
+        const closeBtn = lm.querySelector('.lm-close');
+        if (closeBtn) closeBtn.focus();
+      }, 50);
     }
     function closeLegal() {
       document.getElementById('lm').classList.remove('open');
       document.body.style.overflow = '';
     }
-    /* Close on Escape (extend existing keydown listener) */
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeLegal();
-    });
+    /* Escape key handled by the consolidated keydown listener above */
   </script>
 
   
   <div id="lm" role="dialog" aria-modal="true" aria-labelledby="lm-title">
     <div class="lm-overlay" onclick="closeLegal()"></div>
-    <div class="lm-panel">
+    <div class="lm-panel" tabindex="-1">
       <div class="lm-handle"></div>
       <div class="lm-header">
         <div class="lm-title" id="lm-title"></div>
-        <button class="lm-close" onclick="closeLegal()" aria-label="Close">✕</button>
+        <button type="button" class="lm-close" onclick="closeLegal()" aria-label="Close">✕</button>
       </div>
       <div class="lm-body" id="lm-body">
 
